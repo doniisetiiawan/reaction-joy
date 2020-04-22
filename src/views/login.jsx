@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
+import { withRouter } from 'react-router-dom';
 
 class login extends Component {
-  logIn(e) {
+  logIn() {
     this.props.history.push('/');
+    return null;
   }
 
   render() {
@@ -14,4 +16,4 @@ class login extends Component {
   }
 }
 
-export default login;
+export default withRouter(login);
