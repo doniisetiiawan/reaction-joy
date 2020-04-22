@@ -5,16 +5,18 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 // } = require('clean-webpack-plugin');
 
 module.exports = {
-  entry: './js/app',
+  entry: './src/app',
   devServer: {
-    contentBase: path.join(__dirname, 'js'),
+    contentBase: path.join(__dirname, 'src'),
     compress: true,
     port: 8000,
     hot: true,
+    historyApiFallback: true,
   },
   plugins: [
     // new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
+      template: './index.html',
       title: 'Hot Module Replacement',
     }),
   ],
@@ -42,10 +44,26 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+      {
+        test: /\.html$/,
+        use: [
+          {
+            loader: 'html-loader',
+          },
+        ],
+      },
     ],
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'js'),
+    publicPath: '/',
   },
 };
