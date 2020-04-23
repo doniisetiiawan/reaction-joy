@@ -14,6 +14,8 @@ import UserList from './views/users/list';
 import UserView from './views/users/view';
 import UserEdit from './views/users/edit';
 
+import '../css/app.less';
+
 // Components must be uppercase - regular DOM is lowercase
 // https://facebook.github.io/react/docs/jsx-in-depth.html#html-tags-vs.-react-components
 function AppLayout(props) {
@@ -39,7 +41,7 @@ function AppLayout(props) {
             path="posts/:postId"
             component={PostView}
           />
-          <Route path="/users" component={UserList} />
+          <Route path="/users" exact component={UserList} />
           <Route
             path="/users/create"
             component={UserEdit}
